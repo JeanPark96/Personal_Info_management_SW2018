@@ -14,7 +14,7 @@ public class MainMenu {
 			if(receive_num==-1) {
 				repeat=false;
 			}
-			scanner.close();
+			//scanner.close();
 		}while(repeat);
 		
 	}
