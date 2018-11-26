@@ -1,5 +1,3 @@
-
-
 public class ToDoList{
 	String title;
     String create_date;
@@ -42,7 +40,7 @@ public class ToDoList{
 	}
 	
 	public void setDescription(String description) {
-		this.description = descriptioin;
+		this.description = description;
 	}
 	 
     
