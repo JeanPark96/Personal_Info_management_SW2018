@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class ToDoListMenu {
 	int todolist_id = 0;
