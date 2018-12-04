@@ -14,34 +14,36 @@ public class ToDoList{
 	public String getTitle() {
 		return title;
 	}
-	
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	public String getCreateDate() {
+
+	public String getCreate_date() {
 		return create_date;
 	}
-	
-	public void setCreateDate(String person) {
+
+	public void setCreate_date(String create_date) {
 		this.create_date = create_date;
 	}
-	
+
 	public String getDue() {
 		return due;
 	}
-	
-	public String setDue(String due) {
-		this.due=due;
+
+	public void setDue(String due) {
+		this.due = due;
 	}
-	
-	public void getDescription() {
+
+	public String getDescription() {
 		return description;
 	}
-	
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+
 	 
     
 }

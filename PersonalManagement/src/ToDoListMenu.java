@@ -7,6 +7,7 @@ public class ToDoListMenu {
 	
 	public void doList(){
 		boolean repeat=true;
+		Scanner scanner=new Scanner(System.in);
 		do {
 	      System.out.println("=========================");
 	      System.out.println("1. Create To Do List");
@@ -16,7 +17,7 @@ public class ToDoListMenu {
 	      System.out.println("5. Back to the Main Menu");
 	      System.out.println("=========================");
 	      System.out.println("Select: ");  
-	      Scanner scanner=new Scanner(System.in);
+	      
 	      int selectnum=scanner.nextInt();
 	      int receive_num=inputToDoMenuNum(selectnum);
 	     
@@ -24,7 +25,6 @@ public class ToDoListMenu {
 	    	  	repeat=false;
 	      }
 	      
-	      scanner.close();
 		}while(repeat);
      
   }
@@ -33,23 +33,23 @@ public class ToDoListMenu {
      
      switch(input) {
      case 1:
-        System.out.println("To Do List¸¦ »ı¼ºÇÕ´Ï´Ù."); 
+        System.out.println("To Do Listë¥¼ ìƒì„±í•©ë‹ˆë‹¤."); 
         createToDoList();
         break;
      case 2:
-        System.out.println("To Do List¸¦ º¸¿©Áİ´Ï´Ù.");
+        System.out.println("To Do Listë¥¼ ë³´ì—¬ì¤ë‹ˆë‹¤.");
         viewToDoList();
         break;
      case 3: 
-        System.out.println("To Do List¸¦ °»½ÅÇÕ´Ï´Ù.");
+        System.out.println("To Do Listë¥¼ ê°±ì‹ í•©ë‹ˆë‹¤.");
         updateToDoList();
         break;
      case 4:
-        System.out.println("To Do List¸¦ »èÁ¦ÇÕ´Ï´Ù.");
+        System.out.println("To Do Listë¥¼ ì‚­ì œí•©ë‹ˆë‹¤.");
         deleteToDoList();
         break;
      case 5:
-        System.out.println("Main Menu·Î µ¹¾Æ°©´Ï´Ù.");
+        System.out.println("Main Menuë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
         return -1;
      }
      
@@ -61,17 +61,16 @@ public class ToDoListMenu {
 	   inputToDoList = new HashMap<Integer, ToDoList>();
 	   boolean repeat = true;
 	   do {
-		   System.out.println("To Do List¸¦ »ı¼ºÇÕ´Ï´Ù.");
-		   System.out.print("To Do List Á¦¸ñ ");
+		   System.out.print("To Do List ì œëª© ");
 		   String title = scanner.nextLine();
-		   System.out.print("»ı¼º ³¯Â¥(³â/¿ù/ÀÏ/½Ã): ");
+		   System.out.print("ìƒì„± ë‚ ì§œ(ë…„/ì›”/ì¼/ì‹œ): ");
 		   String create_date = scanner.nextLine();
-		   System.out.print("¸¶°¨³¯Â¥: ");
+		   System.out.print("ë§ˆê°ë‚ ì§œ: ");
 		   String due = scanner.nextLine();
-		   System.out.print("¼³¸í: ");
+		   System.out.print("ì„¤ëª…: ");
 		   String description=scanner.nextLine();
 		   inputToDoList.put(++todolist_id, new ToDoList(title, create_date, due, description));
-		   System.out.print("Ãß°¡ ÀÔ·Â ÇÏ½Ã°Ú½À´Ï±î?(y/n): ");
+		   System.out.print("ì¶”ê°€ ì…ë ¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(y/n): ");
 		   String answer=scanner.nextLine();
 		   if(answer.equals("n")) {
 			   repeat=false;
@@ -81,7 +80,7 @@ public class ToDoListMenu {
   
   public void viewToDoList() {
 	   System.out.println("==================================================");
-	   System.out.println("id \t\t Á¦¸ñ \t\t »ı¼º³¯Â¥ \t\t ¸¶°¨ÀÏ \t\t ¼³¸í");
+	   System.out.println("id \t\t ì œëª© \t\t ìƒì„±ë‚ ì§œ \t\t ë§ˆê°ì¼ \t\t ì„¤ëª…");
 	   System.out.println("==================================================");
 	   
 	   Set<Integer>keys = inputToDoList.keySet();
@@ -90,7 +89,7 @@ public class ToDoListMenu {
 		   Integer id = iterate.next();
 		   ToDoList todolist = inputToDoList.get(id);
 		   if(todolist!=null&&id!=null)
-			   System.out.println(id+" "+todolist.getTitle()+"\t"+ todolist.getCreateDate()+"\t"+todolist.getDue()+"\t"+ todolist.getDescription());
+			   System.out.println(id+" "+todolist.getTitle()+"\t"+ todolist.getCreate_date()+"\t"+todolist.getDue()+"\t"+ todolist.getDescription());
 	   }
      
   }
@@ -98,23 +97,26 @@ public class ToDoListMenu {
 
   public void updateToDoList() {
 	   boolean repeat = true;
+	   Scanner scanner = new Scanner(System.in);
+	   Scanner scanner2 = new Scanner(System.in);
 	   do{
-		   Scanner scanner = new Scanner(System.in);
-		   System.out.print("¼öÁ¤ÇÒ id ÀÔ·Â: ");
-		   int id = scanner.nextInt();
-		   System.out.print("To Do List Á¦¸ñ: ");
+		   
+		   System.out.print("ìˆ˜ì •í•  id ì…ë ¥: ");
+		   int id = scanner2.nextInt();
+		   
+		   System.out.print("To Do List ì œëª©: ");
 		   String title = scanner.nextLine();
-		   System.out.print("»ı¼º³¯Â¥(³â/¿ù/ÀÏ/½Ã): ");
+		   System.out.print("ìƒì„±ë‚ ì§œ(ë…„/ì›”/ì¼/ì‹œ): ");
 		   String create_date = scanner.nextLine();
-		   System.out.print("¸¶°¨³¯Â¥: ");
+		   System.out.print("ë§ˆê°ë‚ ì§œ: ");
 		   String due = scanner.nextLine();
-		   System.out.print("¼³¸í: ");
+		   System.out.print("ì„¤ëª…: ");
 		   String description=scanner.nextLine();
 		   
 		   inputToDoList.put(id, new ToDoList(title, create_date, due, description));
 		   
-		   System.out.print("Ãß°¡ ¼öÁ¤ÇÏ½Ã°Ú½À´Ï±î?(y/n)");
-		   String answer=scanner.next();
+		   System.out.print("ì¶”ê°€ ìˆ˜ì •í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(y/n)");
+		   String answer=scanner.nextLine();
 		   if(answer.equals("n")) {
 			   repeat=false;
 		   }
@@ -127,11 +129,11 @@ public class ToDoListMenu {
 	  Scanner scanner_repeat=new Scanner(System.in);
 	  boolean repeat = true;
 	  do {
-		  System.out.print("»èÁ¦ÇÒ idÀÔ·Â: ");
+		  System.out.print("ì‚­ì œí•  idì…ë ¥: ");
 		  int id = scanner_id.nextInt();
 		  inputToDoList.remove(id);
 			   
-		  System.out.print("Ãß°¡ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?(y/n)");
+		  System.out.print("ì¶”ê°€ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?(y/n)");
 		  String answer=scanner_repeat.nextLine();
 		  if(answer.equals("n")) {
 			  repeat=false;
