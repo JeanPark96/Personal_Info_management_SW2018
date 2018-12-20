@@ -7,13 +7,14 @@ import java.util.Set;
 
 
 public class ContactMenu {
-	int id=0,num=0;
+	public static int id=0,num=0;
 	public static HashMap<Integer,Contact> inputContact;
 	
 	
 	public void contactList() {
 		Scanner scanner=new Scanner(System.in);
 		boolean repeat=true;
+		inputContact=new HashMap<Integer,Contact>();
 		do {
 			
 			ContactMenu contact=new ContactMenu();
@@ -85,30 +86,36 @@ public class ContactMenu {
 	public void createContact() {
 		Scanner scanner1=new Scanner(System.in);
 		
-		inputContact=new HashMap<Integer,Contact>();
+		
 		boolean repeat=true;
 		do {
-				System.out.println("연락처를 입력해주세요.");
-						
-				System.out.print("이름:");
 				
-					String name=scanner1.nextLine();
-					System.out.print("전화번호:");
-					String phone_num=scanner1.nextLine();
-					System.out.print("이메일:");
-					String email=scanner1.nextLine();
-					inputContact.put(++id,new Contact(name,phone_num,email));
-					num++;
-					System.out.print("추가 입력 하시겠습니까?(y/n)");
-					String answer=scanner1.nextLine();
-					if(answer.equals("n")) {
-						repeat=false;
-					}
+			System.out.println("연락처를 입력해주세요.");
+			System.out.print("이름:");
+			String name=scanner1.nextLine();
+			System.out.print("전화번호:");
+			String phone_num=scanner1.nextLine();
+			System.out.print("이메일:");
+			String email=scanner1.nextLine();
+			
+			inputContact.put(++id,addContactInfo(name,phone_num,email));
+			num++;
+			System.out.print("추가 입력 하시겠습니까?(y/n)");
+			String answer=scanner1.nextLine();
+			if(answer.equals("n")) {
+				repeat=false;
+			}
 				
 			
 		}while(repeat);
 		
 	}
+	
+	public Contact addContactInfo(String name,String phone_num,String email) {
+		Contact contact=new Contact(name,phone_num,email);	
+		return contact;
+	}
+	
 	public void updateContact() {
 		Scanner scanner1=new Scanner(System.in);
 		Scanner scanner2=new Scanner(System.in);
@@ -123,8 +130,7 @@ public class ContactMenu {
 				System.out.print("이메일:");
 				String email=scanner1.nextLine();
 				
-				
-				inputContact.put(receive_id, new Contact(name,phone_num,email));
+				updateContactInfo(receive_id,name,phone_num,email);
 				System.out.print("추가 수정 하시겠습니까?(y/n)");
 				String answer=scanner1.nextLine();
 				if(answer.equals("n")) {
@@ -136,7 +142,14 @@ public class ContactMenu {
 		
 	}
 	
-
+	public Contact updateContactInfo(int input_id,String name,String phone_num,String email) {
+		
+		Contact contact=new Contact(name,phone_num,email);
+		inputContact.put(input_id,contact);
+		Contact c=inputContact.get(input_id);
+		
+		return c;
+	}
 	public void deleteContact() {
 		Scanner scanner1=new Scanner(System.in);
 		Scanner scanner2=new Scanner(System.in);

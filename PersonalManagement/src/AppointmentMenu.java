@@ -59,14 +59,8 @@ public class AppointmentMenu {
 		   inputAppointment = new HashMap<Integer, Appointment>();
 		   boolean repeat = true;
 		   do {
-			   System.out.println("일정을 입력해주세요.");
-			   System.out.print("날짜(년/월/일): ");
-			   String date = scanner.nextLine();
-			   System.out.print("사람: ");
-			   String person = scanner.nextLine();
-			   System.out.print("장소: ");
-			   String location = scanner.nextLine();
-			   inputAppointment.put(++appointment_id, new Appointment(date, person, location));
+			   
+			   inputAppointment.put(++appointment_id, addAppointmentInfo());
 			   
 			   System.out.print("추가 입력 하시겠습니까?(y/n): ");
 			   String answer=scanner.nextLine();
@@ -76,6 +70,21 @@ public class AppointmentMenu {
 		   }while(repeat);
 	   }
 	   
+	   public Appointment addAppointmentInfo() {
+		   Scanner scanner = new Scanner(System.in);
+		   
+		   System.out.println("일정을 입력해주세요.");
+		   System.out.print("날짜(년/월/일): ");
+		   String date = scanner.nextLine();
+		   System.out.print("사람: ");
+		   String person = scanner.nextLine();
+		   System.out.print("장소: ");
+		   String location = scanner.nextLine();
+		   Appointment appointment=new Appointment(date,person,location);
+			
+			return appointment;
+		   
+	   }
 	   public void viewAppointment() {
 		   System.out.println("==================================================");
 		   System.out.println("id 날짜 \t\t 사람 \t 장소\t");
