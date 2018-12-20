@@ -1,5 +1,4 @@
-import java.util.Scanner;
-
+import java.util.*;
 
 public class MainMenu {
 	
@@ -14,10 +13,9 @@ public class MainMenu {
 			if(receive_num==-1) {
 				repeat=false;
 			}
-			//scanner.close();
 		}while(repeat);
-		
 	}
+	
 	public void showMenu() {
 		System.out.println("======================");
 		System.out.println("1. Manage Contact");

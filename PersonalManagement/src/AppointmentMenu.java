@@ -59,16 +59,10 @@ public class AppointmentMenu {
 		   inputAppointment = new HashMap<Integer, Appointment>();
 		   boolean repeat = true;
 		   do {
-			   System.out.println("ÀÏÁ¤À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
-			   System.out.print("³¯Â¥(³â/¿ù/ÀÏ): ");
-			   String date = scanner.nextLine();
-			   System.out.print("»ç¶÷: ");
-			   String person = scanner.nextLine();
-			   System.out.print("Àå¼Ò: ");
-			   String location = scanner.nextLine();
-			   inputAppointment.put(++appointment_id, new Appointment(date, person, location));
 			   
-			   System.out.print("Ãß°¡ ÀÔ·Â ÇÏ½Ã°Ú½À´Ï±î?(y/n): ");
+			   inputAppointment.put(++appointment_id, addAppointmentInfo());
+			   
+			   System.out.print("ì¶”ê°€ ì…ë ¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(y/n): ");
 			   String answer=scanner.nextLine();
 			   if(answer.equals("n")) {
 				   repeat=false;
@@ -76,9 +70,24 @@ public class AppointmentMenu {
 		   }while(repeat);
 	   }
 	   
+	   public Appointment addAppointmentInfo() {
+		   Scanner scanner = new Scanner(System.in);
+		   
+		   System.out.println("ì¼ì •ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+		   System.out.print("ë‚ ì§œ(ë…„/ì›”/ì¼): ");
+		   String date = scanner.nextLine();
+		   System.out.print("ì‚¬ëŒ: ");
+		   String person = scanner.nextLine();
+		   System.out.print("ì¥ì†Œ: ");
+		   String location = scanner.nextLine();
+		   Appointment appointment=new Appointment(date,person,location);
+			
+			return appointment;
+		   
+	   }
 	   public void viewAppointment() {
 		   System.out.println("==================================================");
-		   System.out.println("id ³¯Â¥ \t\t »ç¶÷ \t Àå¼Ò\t");
+		   System.out.println("id ë‚ ì§œ \t\t ì‚¬ëŒ \t ì¥ì†Œ\t");
 		   System.out.println("==================================================");
 		   
 		   Set<Integer>keys = inputAppointment.keySet();
@@ -96,17 +105,17 @@ public class AppointmentMenu {
 		   boolean repeat = true;
 		   do{
 			   Scanner scanner = new Scanner(System.in);
-			   System.out.print("¼öÁ¤ÇÒ id ÀÔ·Â: ");
+			   System.out.print("ìˆ˜ì •í•  id ì…ë ¥: ");
 			   int id = scanner.nextInt();
-			   System.out.print("³¯Â¥(³â/¿ù/ÀÏ): ");
+			   System.out.print("ë‚ ì§œ(ë…„/ì›”/ì¼): ");
 			   String date = scanner.next();
-			   System.out.print("»ç¶÷: ");
+			   System.out.print("ì‚¬ëŒ: ");
 			   String person = scanner.next();
-			   System.out.print("Àå¼Ò: ");
+			   System.out.print("ì¥ì†Œ: ");
 			   String location = scanner.next();
 			   inputAppointment.put(id, new Appointment(date, person, location));
 			   
-			   System.out.print("Ãß°¡ ¼öÁ¤ÇÏ½Ã°Ú½À´Ï±î?(y/n)");
+			   System.out.print("ì¶”ê°€ ìˆ˜ì •í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(y/n)");
 			   String answer=scanner.next();
 			   if(answer.equals("n")) {
 				   repeat=false;
@@ -119,11 +128,11 @@ public class AppointmentMenu {
 		   boolean repeat = true;
 		   do {
 			   Scanner scanner = new Scanner(System.in);
-			   System.out.print("»èÁ¦ÇÒ id ÀÔ·Â: ");
+			   System.out.print("ì‚­ì œí•  id ì…ë ¥: ");
 			   int id = scanner.nextInt();
 			   inputAppointment.remove(id);
 			   
-			   System.out.print("Ãß°¡ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?(y/n)");
+			   System.out.print("ì¶”ê°€ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?(y/n)");
 			   String answer=scanner.next();
 			   if(answer.equals("n")) {
 				   repeat=false;
