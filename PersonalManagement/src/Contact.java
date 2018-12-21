@@ -18,7 +18,7 @@ class Contact {
 			setPhone_num(phone_num);
 		
 		
-		if(email.contains("@") && email.contains(".com"))
+		if(email.contains("@"))
 			this.email = email;
 		else
 			setEmail(email);
@@ -47,7 +47,7 @@ class Contact {
 	}
 
 	public void setEmail(String email) {
-		
+		email=email.substring(0,email.length())+"@naver.com";
 		this.email = email;
 	}
 	

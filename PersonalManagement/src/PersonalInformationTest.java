@@ -24,6 +24,16 @@ class PersonalInformationTest {
 		contactWithEnglishName=contactClass.addContactInfo(name, phone_num, email);
 		assertEquals("Jean",contactWithEnglishName.getName());	
 	}
+	@Test
+	void idToEmailFormatTest() {
+		ContactMenu contactClass = new ContactMenu();	
+		Contact contact;
+		String name = "jean";
+		String phone_num = "010-1234-5678";
+		String email = "hlpark7";
+		contact=contactClass.addContactInfo(name, phone_num, email);
+		assertEquals("hlpark7@naver.com",contact.getEmail());	
+	}
 	
 	@Test
 	void appointmentDateFormatTest() {
