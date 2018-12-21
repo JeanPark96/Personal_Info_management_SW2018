@@ -7,29 +7,27 @@ import java.util.Set;
 public class AppointmentMenu {
 	int appointment_id = 0;
 	public static HashMap<Integer, Appointment> inputAppointment;
-	
 	public void PrintMenu() {
-	      System.out.println("===========================");
+	      System.out.println("---------------------------");
 	      System.out.println("1. Create Appointment");
 	      System.out.println("2. View Appointment");
 	      System.out.println("3. Update Appointment");
 	      System.out.println("4. Delete Appointment");
 	      System.out.println("5. Back to main menu");
-	      System.out.println("===========================\n");
-	      System.out.print("Enter Menu Number: ");
+	      System.out.println("---------------------------");
 	      
 	   }
 	   
 	   public void appointmentList() {
-		   boolean repeat = true;
+		   boolean repeat=true;
 		   do {
 		      PrintMenu();
 		      Scanner scanner = new Scanner(System.in);
 		      int num = scanner.nextInt();
-		      int receive_num = inputAppointmentMenuNum(num);
+		      int receive_num=inputAppointmentMenuNum(num);
 		      
-		      if(receive_num == -1) {
-		    	  	repeat = false;
+		      if(receive_num==-1) {
+		    	  	repeat=false;
 		      }
 		   }while(repeat);
 	      
@@ -51,9 +49,6 @@ public class AppointmentMenu {
 		   		break;
 		   	case 5:
 		   		return -1;
-		   	default:
-				System.out.println("Wrong number input.");
-				break;
 		   }
 		   
 		   return 0;
@@ -64,16 +59,16 @@ public class AppointmentMenu {
 		   inputAppointment = new HashMap<Integer, Appointment>();
 		   boolean repeat = true;
 		   do {
-			   System.out.println("Enter your date.");
-			   System.out.print("date(yyyy/mm/dd): ");
-			   String date = scanner.nextLine();
-			   System.out.print("person: ");
-			   String person = scanner.nextLine();
-			   System.out.print("location: ");
-			   String location = scanner.nextLine();
-			   inputAppointment.put(++appointment_id, addAppointmentInfo(date, person, location));
 			   
-			   System.out.print("continue?(y/n): ");
+			   System.out.println("일정을 입력해주세요.");
+			   System.out.print("날짜(년/월/일): ");
+			   String date = scanner.nextLine();
+			   System.out.print("사람: ");
+			   String person = scanner.nextLine();
+			   System.out.print("장소: ");
+			   String location = scanner.nextLine();
+			   inputAppointment.put(++appointment_id, addAppointmentInfo(date,person,location));
+			   System.out.print("추가 입력 하시겠습니까?(y/n): ");
 			   String answer=scanner.nextLine();
 			   if(answer.equals("n")) {
 				   repeat=false;
@@ -82,13 +77,14 @@ public class AppointmentMenu {
 	   }
 	   
 	   public Appointment addAppointmentInfo(String date, String person, String location) {
-		   Appointment appointment = new Appointment(date, person, location);
-		   return appointment;   
+		   Appointment appointment=new Appointment(date,person,location);
+			
+		   return appointment;
+		   
 	   }
-	   
 	   public void viewAppointment() {
 		   System.out.println("==================================================");
-		   System.out.println("ID DATE \t PERSON \t LOCATION\t");
+		   System.out.println("id 날짜 \t\t 사람 \t 장소\t");
 		   System.out.println("==================================================");
 		   
 		   Set<Integer>keys = inputAppointment.keySet();
@@ -96,8 +92,8 @@ public class AppointmentMenu {
 		   while(iterate.hasNext()){
 			   Integer id = iterate.next();
 			   Appointment appointment = inputAppointment.get(id);
-			   if(appointment!=null && id!=null)
-				   System.out.println(id+"  "+appointment.getDate()+" \t "+appointment.getPerson()+" \t "+appointment.getLocation());
+			   if(appointment!=null&&id!=null)
+				   System.out.println(id+" "+appointment.getDate()+"\t"+appointment.getPerson()+"\t"+appointment.getLocation());
 		   }
 	      
 	   }
@@ -106,17 +102,17 @@ public class AppointmentMenu {
 		   boolean repeat = true;
 		   do{
 			   Scanner scanner = new Scanner(System.in);
-			   System.out.print("[ID search]: ");
+			   System.out.print("수정할 id 입력: ");
 			   int id = scanner.nextInt();
-			   System.out.print("date(yyyy/mm/dd): ");
+			   System.out.print("날짜(년/월/일): ");
 			   String date = scanner.next();
-			   System.out.print("person: ");
+			   System.out.print("사람: ");
 			   String person = scanner.next();
-			   System.out.print("location: ");
+			   System.out.print("장소: ");
 			   String location = scanner.next();
 			   inputAppointment.put(id, new Appointment(date, person, location));
 			   
-			   System.out.print("continue?(y/n): ");
+			   System.out.print("추가 수정하시겠습니까?(y/n)");
 			   String answer=scanner.next();
 			   if(answer.equals("n")) {
 				   repeat=false;
@@ -129,11 +125,11 @@ public class AppointmentMenu {
 		   boolean repeat = true;
 		   do {
 			   Scanner scanner = new Scanner(System.in);
-			   System.out.print("[ID search]: ");
+			   System.out.print("삭제할 id 입력: ");
 			   int id = scanner.nextInt();
 			   inputAppointment.remove(id);
 			   
-			   System.out.print("continue?(y/n): ");
+			   System.out.print("추가 삭제하시겠습니까?(y/n)");
 			   String answer=scanner.next();
 			   if(answer.equals("n")) {
 				   repeat=false;

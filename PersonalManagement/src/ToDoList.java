@@ -25,8 +25,7 @@ public class ToDoList{
 	}
 
 	public void setTitle(String title) {
-		
-    	title=title.toUpperCase();
+    		title=title.toUpperCase();
 		this.title = title;
 	}
 

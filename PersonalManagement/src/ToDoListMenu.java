@@ -79,7 +79,7 @@ public class ToDoListMenu {
   
   public void viewToDoList() {
 	   System.out.println("==================================================");
-	   System.out.println("ID TITLE \t CREATION DATE \t\t DUE \t\t DESCRIPTION");
+	   System.out.println("ID TITLE \t\t CREATION DATE \t\t DUE \t\t DESCRIPTION");
 	   System.out.println("==================================================");
 	   
 	   Set<Integer>keys = inputToDoList.keySet();
