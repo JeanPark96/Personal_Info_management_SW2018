@@ -58,7 +58,7 @@ class PersonalInformationTest {
 	    String description="software engineering unit testing homework ";
 	    
 	    checkTitleUpperCase = todolistClass.addToDoListInfo(title, create_date, due, description);
-	    assertEquals("HOMEWORK",checkTitleUpperCase.gettitle());	
+	    assertEquals("HOMEWORK",checkTitleUpperCase.getTitle());	
 	}
     
 	@Test
