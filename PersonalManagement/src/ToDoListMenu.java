@@ -62,11 +62,13 @@ public class ToDoListMenu {
 		   String title = scanner.nextLine();
 		   System.out.print("creation date(yyyy/mm/dd/hh): ");
 		   String create_date = scanner.nextLine();
-		   System.out.print("deadline: ");
+		   System.out.print("due(yyyy/mm/dd): ");
 		   String due = scanner.nextLine();
-		   System.out.print("explain: ");
+		   System.out.print("description: ");
 		   String description=scanner.nextLine();
-		   inputToDoList.put(++todolist_id, new ToDoList(title, create_date, due, description));
+		   
+		   inputToDoList.put(++todolist_id, addToDoListInfo(title, create_date, due, description));
+		   
 		   System.out.print("continue?(y/n): ");
 		   String answer=scanner.nextLine();
 		   if(answer.equals("n")) {
@@ -77,7 +79,7 @@ public class ToDoListMenu {
   
   public void viewToDoList() {
 	   System.out.println("==================================================");
-	   System.out.println("ID TITLE \t CREATION DATE \t DEADLINE \t EXPLAIN");
+	   System.out.println("ID TITLE \t CREATION DATE \t\t DUE \t\t DESCRIPTION");
 	   System.out.println("==================================================");
 	   
 	   Set<Integer>keys = inputToDoList.keySet();
@@ -86,28 +88,34 @@ public class ToDoListMenu {
 		   Integer id = iterate.next();
 		   ToDoList todolist = inputToDoList.get(id);
 		   if(todolist!=null && id!=null)
-			   System.out.println(id+"  "+todolist.getTitle()+"\t"+ todolist.getCreate_date()+"\t"+todolist.getDue()+"\t"+ todolist.getDescription());
+			   System.out.println(id+"  "+todolist.getTitle()+"\t\t"+ todolist.getCreate_date()+"\t\t"+todolist.getDue()+"\t\t"+ todolist.getDescription());
 	   }  
+  }
+
+  public ToDoList addToDoListInfo(String title,String create_date,String due,String description) {	
+	  ToDoList todolist=new ToDoList(title,create_date,due,description);	
+	  return todolist;
   }
 
   public void updateToDoList() {
 	   boolean repeat = true;
 	   Scanner scanner = new Scanner(System.in);
 	   Scanner scanner2 = new Scanner(System.in);
+	  
 	   do{
-		   
 		   System.out.print("[ID search]: ");
 		   int id = scanner2.nextInt();
+		   
 		   System.out.print("To Do List title: ");
 		   String title = scanner.nextLine();
 		   System.out.print("creation date(yyyy/mm/dd/hh): ");
 		   String create_date = scanner.nextLine();
-		   System.out.print("deadline: ");
+		   System.out.print("due(yyyy/mm/dd): ");
 		   String due = scanner.nextLine();
-		   System.out.print("explain: ");
+		   System.out.print("description: ");
 		   String description = scanner.nextLine();
 		   
-		   inputToDoList.put(id, new ToDoList(title, create_date, due, description));
+		   updateToDoListInfo(id, title, create_date, due, description);
 		   
 		   System.out.print("continue?(y/n): ");
 		   String answer = scanner.nextLine();
@@ -117,11 +125,19 @@ public class ToDoListMenu {
 	   }while(repeat);
   }
   
+  public ToDoList updateToDoListInfo(int input_id, String title, String create_date, String due, String description) {
+	  ToDoList todolist=new ToDoList(title, create_date, due, description);
+	  inputToDoList.put(input_id, todolist);
+	  ToDoList t=inputToDoList.get(input_id);
+	  
+	  return t;
+  }
   
   public void deleteToDoList() {
 	  Scanner scanner_id = new Scanner(System.in);
 	  Scanner scanner_repeat = new Scanner(System.in);
 	  boolean repeat = true;
+	  
 	  do {
 		  System.out.print("[ID search]: ");
 		  int id = scanner_id.nextInt();
@@ -135,5 +151,3 @@ public class ToDoListMenu {
 	  }while(repeat);  
   }
 }
-
-

@@ -97,7 +97,7 @@ public class AppointmentMenu {
 			   Integer id = iterate.next();
 			   Appointment appointment = inputAppointment.get(id);
 			   if(appointment!=null && id!=null)
-				   System.out.println(id+"  "+appointment.getDate()+"\t"+appointment.getPerson()+"\t"+appointment.getLocation());
+				   System.out.println(id+"  "+appointment.getDate()+" \t "+appointment.getPerson()+" \t "+appointment.getLocation());
 		   }
 	      
 	   }

@@ -47,6 +47,31 @@ class PersonalInformationTest {
 		assertEquals("Christmas", appointmentWithName.getPerson());
 	}
 	
-
-	
+	@Test
+	void titleFormatTest() {
+		ToDoListMenu todolistClass = new ToDoListMenu();
+		ToDoList checkTitleUpperCase;
+		
+		String title="homeWork";
+	    String create_date="2018/12/20/16";
+	    String due="2018/12/21";
+	    String description="software engineering unit testing homework ";
+	    
+	    checkTitleUpperCase = todolistClass.addToDoListInfo(title, create_date, due, description);
+	    assertEquals("HOMEWORK",checkTitleUpperCase.getTitle());	
+	}
+    
+	@Test
+	void createDateFormatTest() {
+		ToDoListMenu todolistClass = new ToDoListMenu();
+		ToDoList checkCreateDate;
+		
+		String title="homework";
+	    String create_date="2018122016";
+	    String due="2018/12/21";
+	    String description="software engineering unit testing homework ";
+	    
+	    checkCreateDate = todolistClass.addToDoListInfo(title, create_date, due, description);
+	    assertEquals("2018/12/20/16",checkCreateDate.getCreate_date());	
+	}	
 }
